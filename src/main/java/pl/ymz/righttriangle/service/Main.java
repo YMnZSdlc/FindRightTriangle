@@ -13,9 +13,9 @@ public class Main {
     public static void main(String[] args) {
 
         List<Point> staticTestList = new ArrayList<>();
-        Point a = new Point("A", 4, 2);
-        Point b = new Point("B", 7, 2);
-        Point c = new Point("C", 4, 6);
+        Point a = new Point("A", 1, 1);
+        Point b = new Point("B", 3, 1);
+        Point c = new Point("C", 1, 4);
         staticTestList.add(a);
         staticTestList.add(b);
         staticTestList.add(c);
@@ -25,12 +25,9 @@ public class Main {
         randomTestList = makeRandomList(40); //min 3 punkty,
 
 //        printPointList(randomTestList);
-
-//        System.out.println(lenghtBetwenPoints(staticTestList.get(1), staticTestList.get(2)));
-
-//        findRightTriangle(staticTestList);
-
         printTriangleList(findRightTriangle(randomTestList));
+        System.out.println();
+        printTriangleList(findRightTriangle(staticTestList));
     }
 
     private static List<Triangle> findRightTriangle(List<Point> pointList) {
@@ -38,8 +35,8 @@ public class Main {
         for (int a = 0; a < pointList.size() - 2; a++) {
             for (int b = a + 1; b < pointList.size() - 1; b++) {
                 for (int c = b + 1; c < pointList.size(); c++) {
-                    Double aB, bC, cA;
-                    List<Double> triangle = new ArrayList<>();
+                    Float aB, bC, cA;
+                    List<Float> triangle = new ArrayList<>();
                     aB = lenghtBetwenPoints(pointList.get(a), pointList.get(b));
                     bC = lenghtBetwenPoints(pointList.get(b), pointList.get(c));
                     cA = lenghtBetwenPoints(pointList.get(c), pointList.get(a));
@@ -59,7 +56,7 @@ public class Main {
         return result;
     }
 
-    private static boolean testPythagoras(List<Double> triangleSides) {
+    private static boolean testPythagoras(List<Float> triangleSides) {
         Collections.sort(triangleSides);
         if (triangleSides.get(0) * triangleSides.get(0) + triangleSides.get(1) * triangleSides.get(1)
                 == triangleSides.get(2) * triangleSides.get(2)) {
@@ -80,10 +77,10 @@ public class Main {
         }
     }
 
-    private static Double lenghtBetwenPoints(Point first, Point second) {
-        Double result;
-        result = Math.pow(Math.abs(first.getX() - second.getX()), 2) + Math.pow(Math.abs(first.getY() - second.getY()), 2);
-        return Math.sqrt(result);
+    private static Float lenghtBetwenPoints(Point first, Point second) {
+        Float result;
+        result = (float)(Math.pow(Math.abs(first.getX() - second.getX()), 2) + Math.pow(Math.abs(first.getY() - second.getY()), 2));
+        return (float)Math.sqrt(result);
     }
 
     private static List<Point> makeRandomList(int pointNumber) {

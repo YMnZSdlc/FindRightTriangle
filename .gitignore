@@ -33,3 +33,5 @@ hs_err_pid*
 
 # Windows system files
 *.ini
+dedktop.ini
+
